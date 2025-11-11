@@ -1,0 +1,39 @@
+:root {
+    /* color palette */
+    --background: #121212;
+    --card_background: #1F1F1F;
+    --border-color: #444444;
+    --primary_text: #FFFFFF;
+    --secondary_text: #B3B3B3;
+    --active: #007BFF;
+    --hover: #4A9DFF;
+    --danger: #E94D4D;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mood-button {
+    background-color: var(--card_background);
+    color: var(--primary_text);
+    transition: background-color 0.2s;
+
+    border-radius: 50px;
+    padding: 8px 16px;
+    margin: 5px;
+    border: 1px solid var(--border-color);
+    height: 40px;
+    width: 100px;
+    font-size: 14px; 
+    font-weight: 600;
+
+    text-align: center;
+    display: block;
+}
+
+.mood-button:hover {
+    background-color: var(--hover);
+}
+
+.mood-button:active {
+    background-color: var(--active);
+}

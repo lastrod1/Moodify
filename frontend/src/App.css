@@ -1,38 +1,74 @@
-.App {
+:root {
+    /* color palette */
+    --background: #121212;
+    --card_background: #1F1F1F;
+    --border-color: #444444;
+    --primary_text: #FFFFFF;
+    --secondary_text: #B3B3B3;
+    --active: #007BFF;
+    --hover: #4A9DFF;
+    --danger: #E94D4D;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+}
+
+h2 {
+  padding-top: 10px;
+  text-align: center;
+  color: var(--primary_text);
+}
+
+p {
+  color: var(--secondary_text);
+}
+
+.title {
+  color: var(--primary_text);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.genre-container {
+  background-color: var(--border-color);
+  margin: 15px 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mood-container {
+  background-color: var(--border-color);
+  margin: 15px 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.top-songs-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.top-songs-button {
+  color: var(--primary_text);
+  background-color: var(--card_background);
+  border: 2px solid var(--border-color);
+
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+
+  transition: background-color .3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.top-songs-button:hover {
+  background-color: var(--hover);
+}
+
+.top-songs-button:active {
+  background-color: var(--active);
 }
