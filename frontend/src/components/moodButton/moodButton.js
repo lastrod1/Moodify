@@ -1,9 +1,8 @@
-import React from 'react'
 import "./moodButton.css"
 
-function genreButton({ moodName }) {
+function genreButton({ moodName, isActive, onClick}) {
   return (
-    <button class="mood-button">
+    <button onClick={onClick} className={`mood-button ${isActive ? 'active' : ''}`}>
       {moodName}
     </button>
   )

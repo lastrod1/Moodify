@@ -24,7 +24,8 @@ body {
 
 h2 {
   padding-top: 10px;
-  text-align: center;
+  text-align: left;
+  padding: 10px 10px 0px 10px;
   color: var(--primary_text);
 }
 
@@ -37,14 +38,26 @@ p {
   text-align: center;
 }
 
+.selection-container {
+  display: flex;
+}
+
 .genre-container {
-  background-color: var(--border-color);
-  margin: 15px 0px;
+  background-color: var(--card_background);
+  border-color: solid 5px var(--border-color);
+  border-radius: 10px;
+
+  margin: 5px 5px 10px 2.5%;
+  width: 45%;
 }
 
 .mood-container {
-  background-color: var(--border-color);
-  margin: 15px 0px;
+  background-color: var(--card_background);
+  border-color: solid 5px var(--border-color);
+  border-radius: 10px;
+
+  margin: 5px 5px 10px 2.5%;
+  width: 45%;
 }
 
 .top-songs-container {
@@ -72,3 +85,35 @@ p {
 .top-songs-button:active {
   background-color: var(--active);
 }
+
+/* LOGIN STUFF BELOW THIS */
+.login-page {
+  background-color: var(--background);
+
+  width: 100%;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: var(--card_background);
+
+  width: 50%;
+  height: 100%;
+  float: right;
+  border-radius: 50px 0 0 50px;
+}
+
+.app-name {
+  color: var(--primary_text);
+  margin: 50px;
+  font-size: 25px;
+  float: left;
+}
+
+.sign-up-link {
+  color: var(--secondary_text);
+  margin: 62.5px;
+  float: right;
+}
+
+/* Sign up stuff below */

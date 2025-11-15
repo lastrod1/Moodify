@@ -1,9 +1,8 @@
-import React from 'react'
 import "./genreButton.css"
 
-function genreButton({ genreName }) {
+function genreButton({ genreName, isActive, onClick }) {
   return (
-    <button class="genre-button">
+    <button onClick={onClick} className={`genre-button ${isActive ? 'active' : ''}`}>
       {genreName}
     </button>
   )

@@ -24,6 +24,7 @@ def create_app():
     bcrypt.init_app(app)
     #CORS(app, resources={r"/api/*": {"origins": ["http://localhost:3000", "http://127.0.0.1:3000"]}})
 
+    from .models import UserLikedSongs, Login, Mood, Genre, Song
 
     from moodify_api.main.routes import main as main_bp
     app.register_blueprint(main_bp, url_prefix='/api')
