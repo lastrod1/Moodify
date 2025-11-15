@@ -33,6 +33,10 @@ p {
   color: var(--secondary_text);
 }
 
+a {
+  color: #007bff;
+}
+
 .title {
   color: var(--primary_text);
   text-align: center;
@@ -117,3 +121,53 @@ p {
 }
 
 /* Sign up stuff below */
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vh;
+  height: 100vh;
+}
+
+.signup-card {
+  background-color: var(--card_background);
+  height: 300px;
+  width: 300px;
+
+  border-radius: 25px;
+  border-color: var(--border-color);
+  border-style: solid;
+  border-width: 2px;
+}
+
+.signup-header {
+  color: var(--primary_text);
+  text-align: center;
+}
+
+.signup-input, .signup-button{
+  display :block;
+  margin: 0 auto;
+
+  height: 40px;
+  width: 85%;
+  margin-bottom: 15px;
+  padding: 0;
+
+  border-radius: 5px;
+  border-color: var(--border-color);
+  border-width: 1%;
+  border-style: solid;
+}
+
+.signup-button {
+  width: 87%;
+  border-color: var(--card_background);
+  background-color: var(--active);
+  color: var(--primary_text);
+}
+
+.signup-redirect {
+  text-align: center;
+}

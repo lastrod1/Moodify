@@ -6,7 +6,7 @@ function LoginPage() {
     <div className='login-page'>
         <div className='login-container'>
             <h2 className='app-name'>Moodify</h2>
-            <a className='sign-up-link' href='http://localhost:3000/sign-up'>Sign Up</a>
+            <a className='sign-up-link' href='/sign-up'>Sign Up</a>
         </div>
     </div>
   )
