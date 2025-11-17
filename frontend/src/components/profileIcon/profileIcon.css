@@ -1,0 +1,26 @@
+:root {
+    /* color palette */
+    --background: #121212;
+    --card_background: #1F1F1F;
+    --border-color: #444444;
+    --primary_text: #FFFFFF;
+    --secondary_text: #B3B3B3;
+    --active: #007BFF;
+    --hover: #4A9DFF;
+    --danger: #E94D4D;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-profile-icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--primary_text);
+
+    transition: fill 0.2s ease;
+    cursor: pointer;
+}
+
+.user-profile-icon:hover {
+    fill: var(--hover);
+}

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import GenreButton from './../components/genreButton/genreButton'
 import MoodButton from './../components/moodButton/moodButton'
+import ProfileIcon from './../components/profileIcon/profileIcon'
+import { useAuth } from './../hooks/authContext'
 import './../App.css'
 
 function App() {
-  const [username, setUsername] = useState("John Doe");
   const [selectedMoods, setSelectedMoods] = useState([]);
-  // const [moodList, setMoodList] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
-  // const [genreList, setGenreList] = useState([]);
+  const { user } = useAuth();
 
   const genreList = ['EDM', 'Pop', 'KPOP'];
 
@@ -36,7 +36,16 @@ function App() {
 
   return (
     <div>
-      <h1 className="title">Hello {username}</h1>
+      
+      <div className='header'>
+        <div>
+          <h1 className="title">Hello, {user.username}</h1>
+        </div>
+        <div className='header-icon-container'>
+          <ProfileIcon/>
+        </div>
+      </div>
+
       <div className='selection-container'>
         <div className="genre-container">
           <h2>Genres</h2>
@@ -58,7 +67,7 @@ function App() {
         </div>
       </div>
       <div className="top-songs-container">
-        <button className="top-songs-button">Top 50 Hits</button>
+        <button className="top-songs-button">Load Songs</button>
       </div>
     </div>
   )
