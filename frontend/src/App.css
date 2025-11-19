@@ -143,7 +143,7 @@ a {
   float: right;
 }
 
-/* Sign up stuff below */
+/* Sign up, login, and profile stuff below */
 .auth-page {
   display: flex;
   justify-content: center;
@@ -159,7 +159,7 @@ a {
 
 .auth-card {
   background-color: var(--card_background);
-  height: 300px;
+  
   width: 300px;
 
   border-radius: 25px;
@@ -173,7 +173,14 @@ a {
   text-align: center;
 }
 
-.auth-input, .auth-button{
+.auth-text {
+  color: var(--secondary_text);
+
+  font-size: 12px;
+  text-align: center;
+}
+
+.auth-input, .auth-button, .delete-button{
   display :block;
   margin: 0 auto;
 
@@ -192,6 +199,13 @@ a {
   width: 87%;
   border-color: var(--card_background);
   background-color: var(--active);
+  color: var(--primary_text);
+}
+
+.delete-button {
+  width: 87%;
+  border-color: var(--card_background);
+  background-color: var(--danger);
   color: var(--primary_text);
 }
 

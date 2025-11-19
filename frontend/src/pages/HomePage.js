@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import GenreButton from './../components/genreButton/genreButton'
 import MoodButton from './../components/moodButton/moodButton'
 import ProfileIcon from './../components/profileIcon/profileIcon'
@@ -9,6 +10,7 @@ function App() {
   const [selectedMoods, setSelectedMoods] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const genreList = ['EDM', 'Pop', 'KPOP'];
 
@@ -41,7 +43,10 @@ function App() {
         <div>
           <h1 className="title">Hello, {user.username}</h1>
         </div>
-        <div className='header-icon-container'>
+        <div 
+          className='header-icon-container'
+          onClick={() => navigate('/profile')}
+        >
           <ProfileIcon/>
         </div>
       </div>
