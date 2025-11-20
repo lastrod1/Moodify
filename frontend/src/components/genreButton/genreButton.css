@@ -22,12 +22,16 @@
     margin: 5px;
     border: 1px solid var(--border-color);
     height: 40px;
-    width: 100px;
+    width: 96%;
     font-size: 14px; 
     font-weight: 600;
 
     text-align: center;
     display: block;
+}
+
+.active {
+    background-color: var(--active);
 }
 
 .genre-button:hover {

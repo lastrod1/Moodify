@@ -4,6 +4,8 @@ import GenreButton from './../components/genreButton/genreButton'
 import MoodButton from './../components/moodButton/moodButton'
 import ProfileIcon from './../components/profileIcon/profileIcon'
 import { useAuth } from './../hooks/authContext'
+import { getGenreList } from './../lists/genreList'
+import { getMoodList } from '../lists/moodList.js'
 import './../App.css'
 
 function App() {
@@ -12,7 +14,26 @@ function App() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const genreList = ['EDM', 'Pop', 'KPOP'];
+  const [genreList, setGenreList] = useState([]);
+  const [moodList, setMoodList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    async function loadData() {
+      setIsLoading(true);
+      try {
+        const loadedGenres = await getGenreList();
+        const loadedMoods = await getMoodList();
+        setGenreList(loadedGenres);
+        setMoodList(loadedMoods);
+      } catch (error) {
+        console.error("Failed to load data:", error)
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   const toggleMood = (moodName) => {
     setSelectedMoods(prevSelected => {
@@ -38,7 +59,7 @@ function App() {
 
   return (
     <div>
-      
+
       <div className='header'>
         <div>
           <h1 className="title">Hello, {user.username}</h1>
@@ -54,23 +75,26 @@ function App() {
       <div className='selection-container'>
         <div className="genre-container">
           <h2>Genres</h2>
-          {genreList.map(genreName => (
-            <GenreButton
-              genreName={genreName}
-              isActive={selectedGenres.includes({genreName})}
-              onClick={() => toggleGenre({genreName})}
-            />
-          ))}
+          {genreList.map((genre) => (
+              <GenreButton
+                genreName={genre}
+                isActive={selectedGenres.includes(genre)}
+                onClick={()=>toggleGenre(genre)}
+              />
+            ))}
         </div>
         <div className="mood-container">
           <h2>Moods</h2>
-          <MoodButton 
-            moodName="happy"
-            isActive = {selectedMoods.includes('happy')}
-            onClick={() => toggleMood('happy')}
-          />
+          {moodList.map((mood) => (
+              <MoodButton
+                moodName={mood}
+                isActive={selectedMoods.includes(mood)}
+                onClick={()=>toggleMood(mood)}
+              />
+            ))}
         </div>
       </div>
+
       <div className="top-songs-container">
         <button className="top-songs-button">Load Songs</button>
       </div>
