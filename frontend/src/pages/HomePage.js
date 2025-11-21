@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import GenreButton from './../components/genreButton/genreButton';
 import MoodButton from './../components/moodButton/moodButton';
 import ProfileIcon from './../components/profileIcon/profileIcon';
+import SongBar from '../components/songBar/songBar.js';
 import { useAuth } from './../hooks/authContext';
 import { getGenreList } from './../lists/genreList';
 import { getMoodList } from '../lists/moodList.js';
@@ -30,7 +31,7 @@ function App() {
       selectedGenres.map((genre) => genreMap[genre]).filter(Boolean)
     );
     setRecommendedSongs(songs);
-    console.log("Recommended Songs:", songs);
+    console.log("Recommended Songs:", songs[0].artist);
   };
 
   useEffect(() => {
@@ -96,6 +97,15 @@ function App() {
         >
           <ProfileIcon/>
         </div>
+      </div>
+
+      <div className='song-container'>
+        <h2 className='song-header'>Songs</h2>
+        <SongBar 
+          key = "unique-key-1"
+          song_title="arpan's feet" 
+          artist="arpan dey"
+        />
       </div>
 
       <div className='selection-container'>
