@@ -1,7 +1,8 @@
 import React from 'react';
 import './songBar.css';
 
-function songBar({ index, song_title, artist, spotify_id }) {
+function songBar({ index, song_title, artist, url }) {
+  console.log(`FROM SONGBAR: ${url}`);
   return (
     <div className='song-bar'>
       <div>
@@ -9,7 +10,7 @@ function songBar({ index, song_title, artist, spotify_id }) {
       </div>
       <div className='aspect-ratio-wrapper'>
         <img 
-          src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228"
+          src={url}
           alt="song-img"
           className='image'
         />

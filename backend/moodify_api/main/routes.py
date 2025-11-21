@@ -79,7 +79,8 @@ def loadSongs():
                 "title": song.title,
                 "artist": song.artist,
                 "mood_id": song.mood_id,
-                "genre_id": song.genre_id
+                "genre_id": song.genre_id,
+                "image_url": song.image_url
             }
             for song in song_objects
         ]

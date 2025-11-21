@@ -31,7 +31,7 @@ function App() {
       selectedGenres.map((genre) => genreMap[genre]).filter(Boolean)
     );
     setRecommendedSongs(songs);
-    console.log("Recommended Songs:", songs[0].artist);
+    console.log("Recommended Songs:", songs[0].image_url);
   };
 
   useEffect(() => {
@@ -101,13 +101,15 @@ function App() {
 
       <div className='song-container'>
         <h2 className='song-header'>Songs</h2>
-        <SongBar 
-          key = "unique-key-1"
-          index = "1"
-          song_title="Sports car" 
-          artist="Tate McRae"
-          spotify_id="5UJbgR4XF4y1DvbkxEqe8S"
-        />
+        {recommendedSongs.map((song, index)=> (
+            <SongBar
+              index = {index + 1}
+              song_title={song.title}
+              artist={song.artist}
+              url={song.image_url}
+            />
+        ))}
+
       </div>
 
       <div className='selection-container'>
