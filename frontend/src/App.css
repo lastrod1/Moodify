@@ -72,7 +72,9 @@ a {
 .song-container {
   background-color: var(--card_background);
   width: 92.5%;
+  height: auto;
   margin: 5px 5px 10px 2.5%;
+  padding: 0 1% 15px 1%;
 
   border-radius: 10px;
   border-width: 2px;

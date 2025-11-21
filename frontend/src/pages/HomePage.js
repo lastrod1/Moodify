@@ -103,8 +103,10 @@ function App() {
         <h2 className='song-header'>Songs</h2>
         <SongBar 
           key = "unique-key-1"
-          song_title="arpan's feet" 
-          artist="arpan dey"
+          index = "1"
+          song_title="Sports car" 
+          artist="Tate McRae"
+          spotify_id="5UJbgR4XF4y1DvbkxEqe8S"
         />
       </div>
 

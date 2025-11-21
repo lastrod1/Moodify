@@ -45,6 +45,7 @@ class Song(db.Model):
     spotify_id = db.Column(db.String(255), unique=True, nullable=False)
     title = db.Column(db.String(255), nullable=False)
     artist = db.Column(db.String(255), nullable=False)
+    image_url = db.Column(db.String(512)) 
 
     mood_id = db.Column(db.Integer, db.ForeignKey('mood.mood_id'), nullable=True)
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.genre_id'), nullable=True)
