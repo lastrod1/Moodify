@@ -99,4 +99,3 @@ def delete():
     db.session.delete(current_user)
     db.session.commit()
     return jsonify({'message': 'Account deleted successfully'}), 200
-    

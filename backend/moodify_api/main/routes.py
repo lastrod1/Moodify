@@ -2,9 +2,17 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy import select, or_
 from .. import db
-from ..models import Genre, Mood, Song
+from ..models import Genre, Mood, Song, Login, UserLikedSongs
+from datetime import datetime
 
 main = Blueprint('main', __name__)
+
+def get_user():
+    username = request.headers.get('Authorization')
+    if username:
+        user = Login.query.filter_by(username=username).first()
+        return user
+    return None
 
 def get_genres():
     try:
@@ -96,3 +104,87 @@ def loadSongs():
     except Exception as e:
         print(f"Error fetching songs: {e}")
         return jsonify({"error": f"An error occurred while fetching songs. Error: {str(e)}"}), 500
+
+@main.route('/like', methods=['POST'])
+def likeSong():
+    current_user = get_user();
+
+    if current_user is None:
+        return jsonify({'error': 'Not able to find account'}), 400
+    
+    username = current_user.username
+    song_title = request.get_json().get('song_title')
+    dateToStore = datetime.now()
+
+    statement = select(Song.song_id).where(
+        Song.title == song_title
+    )
+    songID = db.session.execute(statement).scalars().first()
+    print(song_title)
+    if songID is None:
+        return jsonify({'error': 'Song not found in database'}), 404
+
+    statement = select(UserLikedSongs).where(
+        UserLikedSongs.song_id == songID,
+        UserLikedSongs.username == username
+    )
+
+    already_liked_song = db.session.execute(statement).scalars().first()
+
+    if(already_liked_song):
+        db.session.delete(already_liked_song)
+        db.session.commit()
+        return jsonify({'message': 'Deleting liked song successful'}), 200
+    else:
+        new_like = UserLikedSongs(
+            username = username,
+            song_id = songID,
+            date_liked = dateToStore
+        )
+        db.session.add(new_like)
+        db.session.commit()
+
+    return jsonify({'message': 'Adding liked song successful'}), 201
+
+@main.route('/liked-songs', methods=['GET'])
+def getLikedSongs():   
+    statement = select(UserLikedSongs)
+    likedSongs = db.session.scalars(statement).all()
+    likedSongsDict = [
+        {
+            'username': song.username,
+            'song_id': song.song_id,
+            'date_liked': song.date_liked
+        }
+        for song in likedSongs
+    ]
+
+    return jsonify(likedSongsDict), 200
+
+# this probably isn't the best name for the route but its fine for now
+@main.route('/is-liked', methods=['GET'])
+def isLiked():
+    song_title = request.args.get('song_title')
+    username = request.args.get('username')
+
+    statement = select(Song.song_id).where(
+        Song.title == song_title
+    )
+    song_id = db.session.execute(statement).scalars().first()
+
+    if not song_id:
+        return jsonify({"error": "Song could not be found in database"}), 400
+
+    statement = select(UserLikedSongs).where(
+        UserLikedSongs.song_id == song_id,
+        UserLikedSongs.username == username
+    )
+    liked_song = db.session.execute(statement).scalars().first()
+
+    if not song_id:
+        return jsonify({"error": "Song could not be found in database"}), 400
+    
+    return jsonify({
+        "is_liked": liked_song is not None,
+        "song_id": song_id
+    }), 200
